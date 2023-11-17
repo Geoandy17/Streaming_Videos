@@ -1,0 +1,16 @@
+spring:
+  cloud:
+    geteway:
+      routes:
+        - id : r1
+          uri : http://localhost:9000/
+          predicates :
+            - Path= /krohn-movies/**
+        - id : r2
+          uri : http://localhost:8086/
+          predicates :
+            - Path= /krohn-users/**
+    discovery:
+      enabled: false
+server:
+  port: 8888

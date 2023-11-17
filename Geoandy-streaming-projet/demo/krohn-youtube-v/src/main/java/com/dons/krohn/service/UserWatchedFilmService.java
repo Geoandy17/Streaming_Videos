@@ -1,0 +1,38 @@
+package com.dons.krohn.service;
+
+
+import com.dons.krohn.entity.UserWatchedFilm;
+import com.dons.krohn.repository.UserWatchedFilmRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserWatchedFilmService {
+
+    private UserWatchedFilmRepository userWatchedFilmRepository;
+
+    @Autowired
+    public UserWatchedFilmService(UserWatchedFilmRepository userWatchedFilmRepository) {
+        this.userWatchedFilmRepository = userWatchedFilmRepository;
+    }
+
+    public List<UserWatchedFilm> getWatchedFilms(){
+        return userWatchedFilmRepository.findAll();
+    }
+
+
+    public List<UserWatchedFilm> getWatchedFilmsByUserId(Long id){
+        return userWatchedFilmRepository.findAllByUser_Id(id);
+    }
+
+    public UserWatchedFilm postWatchedFilm(UserWatchedFilm userWatchedFilm){
+        return userWatchedFilmRepository.save(userWatchedFilm);
+    }
+
+
+    public void deleteWatchedFilmsByUserId(Long id){
+        userWatchedFilmRepository.deleteById(id);
+    }
+}
